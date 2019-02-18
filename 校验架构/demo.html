@@ -1,0 +1,146 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" href="assets/plug/bootstrap-3.3.0/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="assets/css/common.css">
+</head>
+<body>
+	<!--
+		required : 必填项
+		email : 邮箱
+		mobile : 手机号码
+		regex : 正则验证（用户自己配置）
+		amount : 金额校验规则(保留小数点两位)
+		integer : 整数
+		min : 最小值
+		max : 最大值
+		...
+		cardId
+		bankId
+		...
+		要提供给用户扩展的接口
+	-->
+	<div class="bs-example">
+		<form id="loginForm" autocomplete="off" >
+		  
+		  <h3 class="text-center">验证测试表单1</h3>
+		  <div class="form-group">
+		    <label class="control-label" for="mobile">手机号码：</label>
+		    <!--
+				不能为空
+				由字母数字下划线所组成
+			-->
+		    <input type="text" class="form-control" id="mobile" placeholder="请输入手机号码"
+		    data-bv-required="true"
+		    data-bv-required-message="* 手机号码为必填项"
+		    data-bv-mobile="true"
+		    data-bv-mobile-message="* 不合法的手机号码"
+		    >
+		  </div>
+		  <div class="form-group">
+		    <label class="control-label" for="password">密码：</label>
+		    <!--
+				不能为空
+				由字母数字下划线所组成
+				必须大于等于6位
+			-->
+		    <input type="text" class="form-control" id="password" placeholder="请输入密码"
+		    data-bv-required="true"
+		    data-bv-required-message="* 密码为必填项"
+		    data-bv-regex="^(?![a-zA-Z_]+$)(?![\da-z_]+$)(?![\dA-Z_]+$)\w+"
+		    data-bv-regex-message="* 密码必须由字母数字下划线所组成，同时必须包含大小写字母和数字">
+		  </div>
+
+		  <div class="form-group">
+		    <label class="control-label" for="password">身份证：</label>
+		    <!--
+				不能为空
+				由字母数字下划线所组成
+				必须大于等于6位
+			-->
+		    <input type="text" class="form-control" id="cardid" placeholder="请输入身份证号码"
+		    data-bv-required="true"
+		    data-bv-required-message="* 身份证号码为必填项"
+		    data-bv-cardid="true"
+		    data-bv-cardid-message="* 不合法的身份证号码">
+		  </div>
+		  <button type="submit" class="btn btn-primary">登陆</button>
+		</form>
+	</div>
+	<div class="bs-example">
+		<h3 class="text-center">验证测试表单2</h3>
+		<form id="testForm" autocomplete="off" action="http://www.baidu.com">
+		<div data-example-id="togglable-tabs">
+	    <ul id="myTabs" class="nav nav-tabs" role="tablist">
+	      <li role="presentation" class="active"><a href="#home" id="home-tab" role="tab" data-toggle="tab" aria-controls="home" aria-expanded="true">用户信息</a></li>
+	      <li role="presentation" class=""><a href="#profile" role="tab" id="profile-tab" data-toggle="tab" aria-controls="profile" aria-expanded="false">其他信息</a></li>
+	    </ul>
+	    <div id="myTabContent" class="tab-content">
+	      <div role="tabpanel" class="tab-pane fade active in" id="home" aria-labelledby="home-tab">
+	        <div class="form-group">
+			    <label class="control-label" for="email">邮箱名：</label>
+			    <!--
+					不能为空
+					由字母数字下划线所组成
+				-->
+			    <input type="text" class="form-control" id="email" placeholder="请输入邮箱地址"
+			    data-bv-required="true"
+			    data-bv-required-message="* 邮箱地址为必填项"
+			    data-bv-email="true"
+			    data-bv-email-message="* 不合法的邮箱地址">
+			  </div>
+	      </div>
+	      <div role="tabpanel" class="tab-pane fade" id="profile" aria-labelledby="profile-tab">
+	        	<div class="form-group">
+			    <label class="control-label" for="mobile">手机号码：</label>
+			    <!--
+					不能为空
+					由字母数字下划线所组成
+				-->
+			    <input type="text" class="form-control" id="mobile" placeholder="请输入手机号码"
+			    data-bv-required="true"
+			    data-bv-required-message="* 手机号码为必填项"
+			    data-bv-mobile="true"
+			    data-bv-mobile-message="* 不合法的手机号码">
+			  </div>
+	      </div>
+	    </div>
+	  </div>
+	  <button type="submit" class="btn btn-primary">提交</button>
+	  </form>
+	</div>
+	<script type="text/javascript" src="assets/plug/jquery/jquery-2.2.4.js"></script>
+	<script type="text/javascript" src="assets/plug/bootstrap-3.3.0/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="assets/plug/i18n/i18n.1.0.1.js"></script>
+	<script type="text/javascript" src="assets/plug/bootstrapValidator-0.1.1/bootstrapValidator-0.1.1.js"></script>
+	<script type="text/javascript" src="assets/plug/bootstrapValidator-0.1.1/bootstrapValidator-zh.js"></script>
+	<script type="text/javascript" src="assets/plug/bootstrapValidator-0.1.1/bootstrapValidator-ko.js"></script>
+	<script type="text/javascript" src="assets/plug/bootstrapValidator-0.1.1/bootstrapValidator-ja.js"></script>
+	<script>
+		// window.onload
+		$(function(){
+			//可以应用到任何项目
+			//方便升级，向下兼容 可维护性
+			//无论用户怎么用代码不能报错 健壮性
+			//将来用户有其他更多的需求的时候可以扩展 可扩展性
+			//
+			$.fn["bootstrapValidator"].extendRule({
+					"cardid" : function(){
+						return /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/.test(this.val());
+					}
+				}
+			);
+			// $("#loginForm").bootstrapValidator({
+			// 	lang : "zh",
+			// 	raise : "keyup"
+			// });
+ 		$("#loginForm").bootstrapValidator({
+				raise : "keyup",
+				lang : I18N.JA
+			});//打开（激活）该表单下面的数据校验功能
+		});
+	</script>
+</body>
+</html>
